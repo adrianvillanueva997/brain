@@ -1,20 +1,10 @@
-import type { PageLayout, SharedLayout } from "./quartz/cfg";
+import { PageLayout, SharedLayout } from "./quartz/cfg";
 import * as Component from "./quartz/components";
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
 	head: Component.Head(),
-	header: [
-		Component.PageTitle(),
-		Component.Flex({
-			components: [
-				{ Component: Component.Search(), grow: true },
-				{ Component: Component.Darkmode() },
-				{ Component: Component.ReaderMode() },
-			],
-			gap: "0.75rem",
-		}),
-	],
+	header: [],
 	afterBody: [],
 	footer: Component.Footer({
 		links: {
@@ -36,37 +26,47 @@ export const defaultContentPageLayout: PageLayout = {
 		Component.TagList(),
 	],
 	left: [
-		Component.MobileOnly(Component.TableOfContents()),
+		Component.PageTitle(),
 		Component.MobileOnly(Component.Spacer()),
+		Component.Flex({
+			components: [
+				{
+					Component: Component.Search(),
+					grow: true,
+				},
+				{ Component: Component.Darkmode() },
+				{ Component: Component.ReaderMode() },
+			],
+		}),
 		Component.Explorer(),
 	],
 	right: [
-		Component.ConditionalRender({
-			component: Component.Graph(),
-			condition: (page) => page.fileData.slug !== "index",
-		}),
+		Component.Graph(),
 		Component.DesktopOnly(Component.TableOfContents()),
 		Component.Backlinks(),
-		Component.RecentNotes(),
 	],
 };
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
 	beforeBody: [
-		Component.ConditionalRender({
-			component: Component.Breadcrumbs(),
-			condition: (page) => page.fileData.slug !== "index",
-		}),
+		Component.Breadcrumbs(),
 		Component.ArticleTitle(),
 		Component.ContentMeta(),
 	],
-	left: [Component.MobileOnly(Component.Spacer()), Component.Explorer()],
-	right: [
-		Component.ConditionalRender({
-			component: Component.Graph(),
-			condition: (page) => page.fileData.slug === "index",
+	left: [
+		Component.PageTitle(),
+		Component.MobileOnly(Component.Spacer()),
+		Component.Flex({
+			components: [
+				{
+					Component: Component.Search(),
+					grow: true,
+				},
+				{ Component: Component.Darkmode() },
+			],
 		}),
-		Component.RecentNotes(),
+		Component.Explorer(),
 	],
+	right: [],
 };
