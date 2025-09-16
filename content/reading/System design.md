@@ -1,0 +1,2 @@
+- [ ] "The Pragmatic Programmer"
+- [ ] "System Design Interview" by Alex Xu

@@ -1,0 +1,4 @@
+- [ ] "Staff Engineer" by Will Larson
+- [ ] "Designing Data-Intensive Applications" by Martin Kleppmann
+- [ ] "Building a Second Brain" (In Progress)
+- [ ] "Communication for Engineers" (In Progress)
