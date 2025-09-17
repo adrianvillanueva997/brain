@@ -1,3 +1,4 @@
+The notes written here come from [[useful links]]
 # variables
 * Two kind of variables, var and const
 * Variables must always have a value, it is possible to define them as ```undefined``` 
