@@ -1,5 +1,13 @@
 The notes written here come from [[useful links]]
-# variables
+
+# Building system
+Unlike other low-level programing languages like C or C++, Zig does not require of a building toolchain, it is embedded in the compiler.
+It provides multiple building commands:
+* ```zig build-exe```→ Compiles an executable file
+* ```zig build-lib```→ Compiles a library
+* ```zig build run``` → Compile and run the project
+
+# Variables
 * Two kind of variables, var and const
 * Variables must always have a value, it is possible to define them as ```undefined``` 
 ```zig
