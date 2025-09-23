@@ -4,3 +4,6 @@ These notes are the representation of my second brain, I wanted to keep an onlin
 
 Have fun and hope you learn something. 
 
+Currently I am taking notes about different programming languages, the list will expand more and more.
+- [[rust]]
+- [[zig]]

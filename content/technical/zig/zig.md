@@ -1,4 +1,4 @@
-The notes written here come from [[useful links]]
+The notes written here come from [[technical/zig/useful links]]
 
 # Building system
 Unlike other low-level programing languages like C or C++, Zig does not require of a building toolchain, it is embedded in the compiler.
