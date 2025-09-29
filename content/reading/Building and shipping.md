@@ -1,2 +1,0 @@
-- [ ] "The Lean Startup" by Eric Ries
-- [ ] "Working in Public" by Nadia Eghbal

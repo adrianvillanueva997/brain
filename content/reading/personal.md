@@ -1,2 +1,0 @@
-- [ ] Building a second brain 
-- [ ] Communication for engineers
