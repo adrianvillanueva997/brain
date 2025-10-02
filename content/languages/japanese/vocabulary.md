@@ -1,0 +1,41 @@
+すし→ sushi 
+つち→ tsuchi → soil
+そと → soto → outside
+さけ→ sake 
+せき → seki → seat; cough
+たつ → tatsu → stand; leave; dragon
+とち→ tochi→ land
+うた 
+こと
+すそ
+たい
+てき
+しち
+あせ
+うそ
+きせつ
+あした
+さとい
+せきてい
+ちかてつ
+
+| hiragana | romaji | meaning |
+| -------- | ------ | ------- |
+| すし       | sushi  |         |
+| つち       | tsuchi |         |
+| そと       | soto   |         |
+| さけ       | sake   |         |
+| てつ       |        |         |
+| たつ       |        |         |
+| とち       |        |         |
+| うた       |        |         |
+| すそ       |        |         |
+| たい       |        |         |
+| てき       |        |         |
+| しち       |        |         |
+| あせ       |        |         |
+| きせつ      |        |         |
+| あした      |        |         |
+| ちてい      |        |         |
+| せちてい     |        |         |
+| ちたてつ     |        |         |
