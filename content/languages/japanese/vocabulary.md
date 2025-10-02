@@ -5,7 +5,7 @@
 | そと       | soto       | outside                |
 | さけ       | sake       | sake / salmon          |
 | てつ       | tetsu      | iron / steel           |
-| たき       | seki       | seat / cough           |
+| たき       | taki       | seat / cough           |
 | たつ       | tatsu      | stand / leave / dragon |
 | うた       | uta        | land                   |
 | こと       | koto       | song / poem            |
