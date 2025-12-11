@@ -6,7 +6,6 @@ Reading list and notes for developing technical leadership skills.
 
 - [ ] "Staff Engineer" by Will Larson
 - [ ] "Designing Data-Intensive Applications" by Martin Kleppmann
-- [ ] "Building a Second Brain" (In Progress)
 - [ ] "Communication for Engineers" (In Progress)
 
 ## Key Concepts
