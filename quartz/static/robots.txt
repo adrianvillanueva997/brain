@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow private and template areas
+Disallow: /private/
+Disallow: /templates/
+
+# Sitemap
+Sitemap: https://brain.adrianvillanueva.com/sitemap.xml

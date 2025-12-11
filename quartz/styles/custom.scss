@@ -1,3 +1,1714 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ============================================
+// ENHANCED COLOR VARIABLES
+// ============================================
+
+:root {
+  // Cozy semantic colors for light mode
+  --success: #7fb069; // Sage green
+  --warning: #e8a87c; // Warm peach
+  --error: #d97171; // Soft red
+  --info: #85b7c9; // Soft blue
+  
+  // Soft, warm shadows
+  --shadow-sm: 0 1px 2px 0 rgb(61 47 33 / 0.06);
+  --shadow: 0 2px 4px 0 rgb(61 47 33 / 0.08), 0 1px 2px -1px rgb(61 47 33 / 0.08);
+  --shadow-md: 0 4px 8px -1px rgb(61 47 33 / 0.1), 0 2px 4px -2px rgb(61 47 33 / 0.08);
+  --shadow-lg: 0 10px 20px -3px rgb(61 47 33 / 0.12), 0 4px 6px -4px rgb(61 47 33 / 0.1);
+  --shadow-xl: 0 20px 30px -5px rgb(61 47 33 / 0.15), 0 8px 10px -6px rgb(61 47 33 / 0.12);
+  
+  // Cozy border radius - more rounded
+  --radius-sm: 0.5rem;
+  --radius: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  // Cozy effects
+  --cozy-glow: 0 0 20px rgba(212, 117, 79, 0.1);
+  --cozy-warmth: rgba(255, 216, 150, 0.05);
+}
+
+[saved-theme="dark"] {
+  // Cozy semantic colors for dark mode
+  --success: #8ec07c; // Warm sage
+  --warning: #fabd7f; // Golden peach
+  --error: #eb8a8a; // Soft coral
+  --info: #a6cad9; // Soft sky blue
+  
+  // Warm dark shadows with subtle glow
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 0 8px rgb(232 149 111 / 0.03);
+  --shadow: 0 2px 4px 0 rgb(0 0 0 / 0.5), 0 0 12px rgb(232 149 111 / 0.04);
+  --shadow-md: 0 4px 8px -1px rgb(0 0 0 / 0.5), 0 0 16px rgb(232 149 111 / 0.05);
+  --shadow-lg: 0 10px 20px -3px rgb(0 0 0 / 0.6), 0 0 20px rgb(232 149 111 / 0.06);
+  --shadow-xl: 0 20px 30px -5px rgb(0 0 0 / 0.7), 0 0 30px rgb(232 149 111 / 0.08);
+  
+  // Warm dark glow
+  --cozy-glow: 0 0 30px rgba(232, 149, 111, 0.15);
+  --cozy-warmth: rgba(255, 184, 102, 0.03);
+}
+
+// ============================================
+// ACCESSIBILITY IMPROVEMENTS
+// ============================================
+
+// Focus indicators for keyboard navigation
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+// Respect user motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ============================================
+// SMOOTH THEME TRANSITIONS
+// ============================================
+
+:root {
+  color-scheme: light dark;
+}
+
+body,
+.page,
+article {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// ============================================
+// FLUID TYPOGRAPHY
+// ============================================
+
+html {
+  font-size: clamp(14px, 0.875rem + 0.5vw, 18px);
+}
+
+h1 {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1rem + 1.25vw, 1.6rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 0.95rem + 0.75vw, 1.3rem);
+  line-height: 1.4;
+}
+
+h4, h5, h6 {
+  line-height: 1.5;
+}
+
+// ============================================
+// IMPROVED LINK STYLES
+// ============================================
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// ============================================
+// CUSTOM SCROLLBAR
+// ============================================
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lightgray);
+  border-radius: 5px;
+  border: 2px solid var(--light);
+  
+  &:hover {
+    background: var(--gray);
+  }
+}
+
+// Firefox scrollbar
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightgray) var(--light);
+}
+
+// ============================================
+// CODE BLOCK IMPROVEMENTS
+// ============================================
+
+pre {
+  position: relative;
+  
+  // Better mobile code block handling
+  @media (max-width: 800px) {
+    font-size: 0.8rem;
+    margin-inline: -1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+// Copy button positioning (if added in future)
+pre:hover::before {
+  opacity: 1;
+}
+
+// ============================================
+// TABLE IMPROVEMENTS
+// ============================================
+
+.table-container {
+  // Better shadow for scrollable tables
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, var(--light), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  &:has(> table:not(:hover)) {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+table {
+  min-width: 100%;
+  
+  @media (max-width: 800px) {
+    font-size: 0.9rem;
+    
+    th, td {
+      padding: 0.3rem 0.5rem;
+      min-width: 60px;
+    }
+  }
+}
+
+// ============================================
+// DARK MODE IMAGE OPTIMIZATION
+// ============================================
+
+@media (prefers-color-scheme: dark) {
+  img:not([src*=".svg"]) {
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+    
+    &:hover {
+      filter: brightness(1);
+    }
+  }
+}
+
+// ============================================
+// IMPROVED TEXT SELECTION
+// ============================================
+
+::selection {
+  background: var(--secondary);
+  color: var(--light);
+  opacity: 0.7;
+}
+
+::-moz-selection {
+  background: var(--secondary);
+  color: var(--light);
+  opacity: 0.7;
+}
+
+// ============================================
+// BETTER MOBILE SPACING
+// ============================================
+
+@media (max-width: 800px) {
+  article {
+    padding-inline: 0.5rem;
+  }
+  
+  blockquote {
+    margin-inline: 0;
+    padding-inline-start: 0.75rem;
+  }
+  
+  .callout {
+    margin-inline: 0;
+  }
+}
+
+// ============================================
+// SMOOTH SCROLL IMPROVEMENTS
+// ============================================
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; // Account for fixed headers
+  }
+}
+
+// ============================================
+// GRID SPACING IMPROVEMENTS
+// ============================================
+
+.page > #quartz-body {
+  @media (min-width: 1200px) {
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+  }
+  
+  @media (min-width: 800px) and (max-width: 1200px) {
+    column-gap: 1rem;
+    row-gap: 0.75rem;
+  }
+}
+
+// ============================================
+// LOADING STATES & PERFORMANCE
+// ============================================
+
+img {
+  // Better image loading
+  background: var(--lightgray);
+  
+  &[loading="lazy"] {
+    content-visibility: auto;
+  }
+}
+
+// ============================================
+// PRINT STYLES
+// ============================================
+
+@media print {
+  .sidebar,
+  .page-header,
+  .page-footer,
+  nav,
+  button {
+    display: none !important;
+  }
+  
+  article {
+    max-width: 100% !important;
+  }
+  
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+    
+    &[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+    }
+  }
+  
+  pre, code {
+    border: 1px solid #000;
+    page-break-inside: avoid;
+  }
+}
+
+// ============================================
+// SKIP TO CONTENT LINK (Accessibility)
+// ============================================
+
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--secondary);
+  color: var(--light);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 10000;
+  
+  &:focus {
+    top: 0;
+  }
+}
+
+// ============================================
+// ENHANCED ANIMATIONS
+// ============================================
+
+@media (prefers-reduced-motion: no-preference) {
+  // Subtle hover animations
+  .callout,
+  pre,
+  blockquote {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+      transform: translateX(2px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+  
+  // Card-like components
+  article {
+    & > h2,
+    & > h3 {
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: var(--secondary);
+      }
+    }
+  }
+}
+
+// ============================================
+// RECENT NOTES ENHANCEMENT - COZY VERSION
+// ============================================
+
+.recent-notes {
+  margin-top: 3rem;
+  padding: 2.5rem;
+  background: transparent; // Cleaner look
+  position: relative;
+  
+  & > h3 {
+    color: var(--dark);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Patrick Hand', cursive;
+    
+    &::before {
+      content: '✨';
+      font-size: 1.5rem;
+    }
+    
+    &::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(
+        to right,
+        var(--secondary),
+        transparent
+      );
+      border-radius: var(--radius-sm);
+      opacity: 0.3;
+    }
+  }
+  
+  & > ul.recent-ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0;
+    
+    & > li {
+      background: var(--light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      border: 1px solid var(--lightgray);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: var(--shadow);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      
+      // Tape effect
+      &::after {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-1deg);
+        width: 80px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255,255,255,0.4);
+        opacity: 0.8;
+      }
+      
+      &:nth-child(even)::after {
+        transform: translateX(-50%) rotate(1.5deg);
+      }
+      
+      &:hover {
+        transform: translateY(-8px) rotate(1deg);
+        box-shadow: var(--shadow-xl), var(--cozy-glow);
+        border-color: var(--secondary);
+        z-index: 1;
+        
+        &::after {
+          opacity: 1;
+        }
+      }
+      
+      .section {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        
+        & > .desc {
+          margin-bottom: 1rem;
+          
+          & > h3 {
+            margin: 0;
+            line-height: 1.4;
+            
+            & > a {
+              font-family: 'Lora', serif;
+              font-weight: 600;
+              color: var(--dark);
+              font-size: 1.25rem;
+              background: none !important; // Remove default link bg
+              
+              &::after {
+                display: none; // Remove underline
+              }
+              
+              &:hover {
+                color: var(--secondary);
+              }
+            }
+          }
+        }
+        
+        & > .meta {
+          margin-top: auto;
+          font-family: 'Patrick Hand', cursive;
+          font-size: 1rem;
+          color: var(--tertiary);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          
+          &::before {
+            content: '📅';
+            font-size: 0.9em;
+            filter: grayscale(1) opacity(0.5);
+          }
+        }
+        
+        .tags {
+          margin-top: 1rem;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          list-style: none;
+          padding: 0;
+          
+          li {
+            margin: 0;
+            
+            a.tag-link {
+              font-size: 0.8rem;
+              padding: 0.2rem 0.6rem;
+              background: var(--lightgray);
+              border-radius: 20px;
+              color: var(--darkgray);
+              font-family: 'Patrick Hand', cursive;
+              transition: all 0.2s ease;
+              
+              &:hover {
+                background: var(--secondary);
+                color: var(--light);
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// ============================================
+// COZY EXPLORER STYLES
+// ============================================
+
+.explorer {
+  padding: 0.75rem;
+  background: transparent;
+  font-size: 0.9rem;
+  
+  button {
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+  }
+  
+  .folder-outer {
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    margin: 0.125rem 0;
+    border-radius: var(--radius);
+    
+    &:hover {
+      background: var(--highlight);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+  
+  .folder-title {
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: "▶";
+      opacity: 0.5;
+      margin-right: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--secondary);
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+  }
+  
+  .folder-outer.open .folder-title::before {
+    content: "▼";
+    opacity: 0.6;
+  }
+  
+  .folder-outer:hover .folder-title::before {
+    opacity: 0.8;
+  }
+  
+  .file-outer {
+    transition: all 0.2s ease;
+    padding: 0.2rem 0.5rem;
+    margin: 0.125rem 0;
+    border-radius: var(--radius-sm);
+    
+    &:hover {
+      background: var(--highlight);
+      transform: translateX(3px);
+    }
+    
+    a {
+      display: flex;
+      align-items: center;
+      font-size: 0.875rem;
+      
+      &::before {
+        content: "•";
+        opacity: 0.4;
+        margin-right: 0.5rem;
+        color: var(--secondary);
+        font-size: 1rem;
+      }
+    }
+    
+    &:hover a::before {
+      opacity: 0.7;
+    }
+  }
+  
+  // Nested folder indentation
+  .folder-outer .folder-outer,
+  .folder-outer .file-outer {
+    margin-left: 0.75rem;
+  }
+}
+
+// ============================================
+// ENHANCED COZY SEARCH EXPERIENCE
+// ============================================
+
+.search {
+  .search-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--lightgray) !important;
+    position: relative;
+    overflow: hidden;
+    
+    // Subtle shine effect
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+    
+    &:hover {
+      background-color: var(--lightgray) !important;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+      
+      &::before {
+        left: 100%;
+      }
+    }
+    
+    &::after {
+      content: "⌘K";
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--light);
+      border: 1px solid var(--lightgray);
+      border-radius: var(--radius);
+      margin-right: 0.5rem;
+      opacity: 0.7;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+      
+      @media (max-width: 800px) {
+        display: none;
+      }
+    }
+  }
+  
+  .search-container {
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(12px) saturate(150%);
+    background: rgba(61, 47, 33, 0.3) !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    
+    &.active {
+      display: flex !important;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
+  
+  .search-space {
+    animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-top: 12vh !important;
+    max-width: 50rem !important;
+    width: 65% !important;
+    
+    @media (max-width: 1200px) {
+      width: 75% !important;
+    }
+    
+    @media (max-width: 800px) {
+      width: 90% !important;
+    }
+    
+    & > input {
+      font-size: 1.1rem !important;
+      padding: 0.875rem 1.25rem !important;
+      transition: all 0.2s ease;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow) !important;
+      border: 2px solid var(--lightgray) !important;
+      background: var(--light) !important;
+      
+      &:focus {
+        outline: none !important;
+        box-shadow: var(--shadow-lg), 0 0 0 3px rgba(212, 117, 79, 0.15) !important;
+        border-color: var(--secondary) !important;
+      }
+      
+      &::placeholder {
+        color: var(--gray);
+        opacity: 0.6;
+      }
+    }
+    
+    & > .search-layout {
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-lg) !important;
+      border: 2px solid var(--lightgray) !important;
+      background: var(--light) !important;
+      max-height: 60vh !important;
+      overflow-y: auto !important;
+    }
+  }
+  
+  // Enhanced search results
+  .search-layout {
+    .results-container {
+      padding: 0.5rem;
+      
+      .result-card {
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: var(--radius-lg);
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        
+        &:hover {
+          background: var(--highlight);
+          border-color: var(--secondary);
+          transform: translateX(4px);
+          box-shadow: var(--shadow-sm);
+        }
+        
+        h3 {
+          color: var(--dark);
+          margin-bottom: 0.5rem;
+          font-size: 1.1rem;
+        }
+        
+        p.preview {
+          color: var(--gray);
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+        
+        ul.tags {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          margin-top: 0.5rem;
+          
+          li {
+            background: var(--lightgray);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--darkgray);
+          }
+        }
+      }
+    }
+    
+    .preview-container {
+      padding: 1.5rem;
+      background: var(--cozy-warmth);
+      
+      h1, h2, h3 {
+        color: var(--dark);
+      }
+    }
+  }
+  
+  // Loading state
+  .search-layout[data-loading="true"] {
+    opacity: 0.6;
+    pointer-events: none;
+    
+    &::after {
+      content: '🔍';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ============================================
+// BUTTON ENHANCEMENTS
+// ============================================
+
+button {
+  transition: all 0.2s ease;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+  }
+}
+
+// ============================================
+// CARD COMPONENT PATTERN
+// ============================================
+
+.card {
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+// ============================================
+// BADGE COMPONENT
+// ============================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  
+  &.badge-success {
+    background: var(--success);
+    color: white;
+  }
+  
+  &.badge-warning {
+    background: var(--warning);
+    color: white;
+  }
+  
+  &.badge-error {
+    background: var(--error);
+    color: white;
+  }
+  
+  &.badge-info {
+    background: var(--info);
+    color: white;
+  }
+}
+
+// ============================================
+// COZY TIME OF DAY GREETING
+// ============================================
+
+.page-title {
+  position: relative;
+  
+  // Add greeting based on time
+  &::after {
+    content: attr(data-greeting);
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-left: 0.5rem;
+    font-style: italic;
+  }
+}
+
+// ============================================
+// SIDEBAR ENHANCEMENTS - COZY PANELS
+// ============================================
+
+.sidebar {
+  &.left,
+  &.right {
+    > * {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow-sm);
+      
+      // Prevent containing block creation for fixed children (Search modal)
+      &:has(.search) {
+        backdrop-filter: none;
+        transform: none;
+        will-change: auto;
+      }
+      
+      @media (max-width: 800px) {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+  
+  // Fix page title box and overflow
+  .page-title {
+    background: transparent !important;
+    padding: 0.5rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-width: 100%;
+    
+    h1 {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: none;
+      line-height: 1.3;
+      white-space: normal;
+      max-width: 100%;
+    }
+    
+    a {
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+  }
+}
+
+[saved-theme="dark"] {
+  .sidebar {
+    &.left,
+    &.right {
+      > * {
+        background: rgba(26, 22, 18, 0.4);
+        border: 1px solid rgba(201, 184, 163, 0.1);
+      }
+    }
+  }
+}
+
+// ============================================
+// GRAPH VIEW COZY STYLING
+// ============================================
+
+.graph {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--cozy-warmth);
+  padding: 1rem;
+  
+  canvas {
+    border-radius: var(--radius);
+  }
+}
+
+// ============================================
+// TABLE OF CONTENTS - COZY SIDEBAR
+// ============================================
+
+.toc {
+  ul {
+    border-left: 2px solid var(--lightgray);
+    padding-left: 1rem;
+    
+    li {
+      margin: 0.5rem 0;
+      
+      a {
+        display: block;
+        padding: 0.25rem 0.5rem;
+        border-radius: var(--radius-sm);
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background: var(--highlight);
+          transform: translateX(3px);
+          color: var(--secondary);
+        }
+        
+        &.active {
+          background: var(--highlight);
+          color: var(--secondary);
+          font-weight: 600;
+          border-left: 3px solid var(--secondary);
+          padding-left: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+// ============================================
+// BACKLINKS - COZY CONNECTIONS
+// ============================================
+
+.backlinks {
+  a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem 0;
+    border-radius: var(--radius);
+    background: var(--cozy-warmth);
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: var(--highlight);
+      border-left-color: var(--secondary);
+      transform: translateX(3px);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+// ============================================
+// TAG STYLING - WARM BADGES
+// ============================================
+
+.tags {
+  a {
+    background: linear-gradient(
+      135deg,
+      var(--lightgray),
+      var(--light)
+    );
+    border: 1px solid var(--lightgray);
+    box-shadow: var(--shadow-sm);
+    
+    &:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--light);
+      box-shadow: var(--shadow);
+    }
+  }
+}
+
+// ============================================
+// IMPROVED CONTRAST FOR ACCESSIBILITY
+// ============================================
+
+// Ensure minimum contrast ratios
+code {
+  background: var(--lightgray);
+  color: var(--dark);
+  font-weight: 500;
+}
+
+// Better disabled states
+button:disabled,
+input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+// ============================================
+// LOGICAL PROPERTIES (Better RTL support)
+// ============================================
+
+article {
+  padding-inline: 1rem;
+  padding-block: 1rem;
+}
+
+blockquote {
+  border-inline-start: 3px solid var(--secondary);
+  padding-inline-start: 1rem;
+  margin-inline: 1rem 0;
+}
+
+.sidebar {
+  padding-inline: 2rem;
+  padding-block: 2rem;
+}
+
+// ============================================
+// COZY AESTHETIC ENHANCEMENTS
+// ============================================
+
+// Warm page background with cozy texture and paper-like feel
+body {
+  background: var(--light);
+  background-image: 
+    // Warm ambient light spots
+    radial-gradient(circle at 20% 50%, var(--cozy-warmth) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--cozy-warmth) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(212, 117, 79, 0.03) 0%, transparent 40%),
+    // Subtle paper texture
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(61, 47, 33, 0.01) 2px,
+      rgba(61, 47, 33, 0.01) 4px
+    );
+  min-height: 100vh;
+}
+
+// Cozy container with soft edges
+.center {
+  position: relative;
+  
+  article {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    
+    @media (max-width: 800px) {
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+    }
+  }
+}
+
+[saved-theme="dark"] {
+  body {
+    background-image: 
+      // Warm firelight glow
+      radial-gradient(circle at 20% 50%, rgba(232, 149, 111, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(232, 149, 111, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 50% 10%, rgba(255, 184, 102, 0.04) 0%, transparent 40%),
+      // Subtle canvas texture
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.01) 2px,
+        rgba(255, 255, 255, 0.01) 4px
+      );
+  }
+  
+  .center article {
+    background: rgba(26, 22, 18, 0.6);
+    border: 1px solid rgba(201, 184, 163, 0.15);
+  }
+}
+
+// Softer, rounder elements
+article,
+.callout,
+.recent-notes,
+pre,
+blockquote {
+  border-radius: var(--radius-lg);
+}
+
+// Cozy link styling
+a {
+  position: relative;
+  
+  &:not(.internal) {
+    color: var(--secondary);
+    
+    &:hover {
+      color: var(--tertiary);
+    }
+  }
+  
+  &.internal {
+    background: linear-gradient(
+      to right,
+      var(--highlight),
+      transparent 100%
+    );
+    border-radius: var(--radius);
+    
+    &:hover {
+      background: var(--highlight);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+// Warm blockquotes with bookmark ribbon feel
+blockquote {
+  background: var(--cozy-warmth);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  padding: 1rem 1rem 1rem 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  
+  // Decorative quote mark
+  &::before {
+    content: '"';
+    font-size: 4rem;
+    line-height: 0;
+    position: absolute;
+    left: 0.5rem;
+    top: 1.5rem;
+    color: var(--secondary);
+    opacity: 0.15;
+    font-family: Georgia, serif;
+  }
+  
+  // Ribbon corner fold
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 2rem 2rem 0;
+    border-color: transparent var(--lightgray) transparent transparent;
+    opacity: 0.3;
+  }
+  
+  &:hover {
+    box-shadow: var(--shadow);
+    transform: translateX(2px);
+  }
+}
+
+// Cozy headings with subtle decoration
+h1, h2, h3 {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: linear-gradient(
+      to bottom,
+      var(--secondary),
+      var(--tertiary)
+    );
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// Warm, inviting code blocks with cozy notebook feel
+pre {
+  border: 2px solid var(--lightgray);
+  background: var(--light);
+  box-shadow: var(--shadow);
+  position: relative;
+  
+  // Notebook binding effect
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    background: linear-gradient(
+      to right,
+      var(--lightgray),
+      transparent
+    );
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  // Binding holes
+  &::after {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 80%;
+    background: 
+      radial-gradient(circle, var(--gray) 40%, transparent 40%) 0 0,
+      radial-gradient(circle, var(--gray) 40%, transparent 40%) 0 1rem,
+      radial-gradient(circle, var(--gray) 40%, transparent 40%) 0 2rem,
+      radial-gradient(circle, var(--gray) 40%, transparent 40%) 0 3rem;
+    background-size: 4px 4px;
+    background-repeat: repeat-y;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
+  code {
+    padding-left: 3.5rem;
+  }
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--secondary);
+  }
+}
+
+// Polaroid-style images with cozy photo album feel
+img {
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  padding: 0.75rem 0.75rem 3rem 0.75rem;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  transition: all 0.3s ease;
+  
+  // Slight rotation for scrapbook effect
+  &:nth-of-type(odd) {
+    transform: rotate(-1deg);
+  }
+  
+  &:nth-of-type(even) {
+    transform: rotate(1deg);
+  }
+  
+  &:hover {
+    box-shadow: var(--shadow-xl);
+    transform: rotate(0deg) scale(1.02) !important;
+    z-index: 10;
+  }
+  
+  // Tape effect at corners
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 3rem;
+    height: 1.5rem;
+    background: rgba(255, 255, 200, 0.5);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+  }
+  
+  &::before {
+    top: -0.5rem;
+    left: -0.5rem;
+    transform: rotate(-15deg);
+  }
+  
+  &::after {
+    top: -0.5rem;
+    right: -0.5rem;
+    transform: rotate(15deg);
+  }
+}
+
+// Cozy table styling
+table {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+th {
+  background: var(--lightgray);
+  color: var(--dark);
+  font-weight: 600;
+}
+
+tr {
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: var(--cozy-warmth);
+  }
+}
+
+// Warm horizontal rules
+hr {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--secondary),
+    transparent
+  );
+  height: 2px;
+  border-radius: var(--radius-sm);
+}
+
+// Cozy callout styling
+.callout {
+  box-shadow: var(--shadow);
+  border-width: 2px;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+// Page container with cozy spacing and ambient decorations
+.page {
+  position: relative;
+  
+  // Warm corner decorations
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.4;
+  }
+  
+  &::before {
+    top: -100px;
+    right: -100px;
+    background: radial-gradient(
+      circle,
+      rgba(212, 117, 79, 0.3),
+      transparent 70%
+    );
+  }
+  
+  &::after {
+    bottom: -150px;
+    left: -150px;
+    background: radial-gradient(
+      circle,
+      rgba(156, 130, 111, 0.3),
+      transparent 70%
+    );
+  }
+  
+  article {
+    padding: 2rem;
+    
+    @media (max-width: 800px) {
+      padding: 1rem;
+    }
+    
+    // First letter drop cap for cozy book feel
+    & > p:first-of-type::first-letter {
+      font-size: 3.5em;
+      line-height: 0.8;
+      float: left;
+      margin: 0.1em 0.1em 0 0;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+  }
+}
+
+// Warm selection
+::selection {
+  background: var(--secondary);
+  color: var(--light);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: var(--secondary);
+  color: var(--light);
+  text-shadow: none;
+}
+
+// Cozy focus states with warm glow
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
+  box-shadow: var(--cozy-glow);
+}
+
+// Add subtle decorative elements
+.page-header,
+.page-footer {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--secondary),
+      transparent
+    );
+    opacity: 0.3;
+  }
+  
+  padding-top: 2rem;
+}
+
+// Warm, inviting footer with cozy details
+.page-footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 2px solid var(--lightgray);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--cozy-warmth)
+  );
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  position: relative;
+  
+  // Decorative divider
+  &::before {
+    content: '✦';
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--secondary);
+    font-size: 1.5rem;
+    background: var(--light);
+    padding: 0 1rem;
+    opacity: 0.6;
+  }
+  
+  a {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      display: inline-block;
+    }
+  }
+}
+
+// Cozy highlighter link styling
+a:not(.tag-link) {
+  text-decoration: none;
+  background-image: linear-gradient(transparent 70%, var(--textHighlight) 70%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.3s ease, color 0.2s ease;
+  border-radius: 2px;
+  
+  &:hover {
+    background-size: 100% 100%;
+    color: var(--dark);
+  }
+  
+  &.internal {
+    background-image: linear-gradient(transparent 70%, var(--highlight) 70%);
+  }
+}
+
+// Reading progress indicator
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--secondary),
+    var(--tertiary)
+  );
+  z-index: 9999;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px var(--secondary);
+}
+
+// Keep default cursor visible
+a, button {
+  cursor: pointer;
+}
+
+// ============================================
+// HANDWRITTEN ACCENTS
+// ============================================
+
+.page-title h1,
+.content-meta,
+.callout-title,
+blockquote cite,
+footer {
+  font-family: 'Patrick Hand', cursive !important;
+}
+
+.page-title h1 {
+  font-size: 1.8rem !important;
+  letter-spacing: 0.5px;
+}
+
+.content-meta {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+// Add a subtle rotation to callouts for that "stuck on" feel
+.callout {
+  transform: rotate(-0.5deg);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: rotate(0deg) scale(1.01);
+  }
+  
+  &:nth-child(2n) {
+    transform: rotate(0.5deg);
+    
+    &:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+  }
+}
+

@@ -1,0 +1,55 @@
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--lightgray);
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  &:hover {
+    background: var(--gray);
+    border-color: var(--darkgray);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.copied {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    
+    svg {
+      stroke: var(--light);
+    }
+  }
+
+  svg {
+    stroke: var(--dark);
+    transition: stroke 0.2s ease;
+  }
+}
+
+pre:hover .copy-code-button {
+  opacity: 1;
+}
+
+// Always show on mobile/touch devices
+@media (hover: none) {
+  .copy-code-button {
+    opacity: 1;
+  }
+}
+
+// Ensure pre has position relative
+pre {
+  position: relative;
+}

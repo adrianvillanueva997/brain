@@ -1,0 +1,22 @@
+{
+  "name": "Adrian's Digital Garden",
+  "short_name": "Brain",
+  "description": "Adrian Villanueva's personal knowledge management system and digital garden",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f8",
+  "theme_color": "#284b63",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/"
+}
