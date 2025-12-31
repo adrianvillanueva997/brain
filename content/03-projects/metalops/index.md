@@ -28,4 +28,4 @@ The tech-stack of the website is going to be Astro due to the static nature of t
 
 4. Evaluate if migrating the metalops github org to a self-hosted solution is worth it and document everything.
 
-5. Eventually at a very late stage try to monetize the blog, at least to pay the hosting
+5. Eventually at a very late stage try to monetize the blog, at least to pay the hosting or offer some sort of consulting.
