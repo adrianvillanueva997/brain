@@ -86,7 +86,7 @@ export default (() => {
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
-        
+
         {/* PWA Manifest */}
         <link rel="manifest" href={joinSegments(baseDir, "static/manifest.json")} />
         <meta name="theme-color" content="#284b63" />

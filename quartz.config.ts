@@ -13,8 +13,10 @@ const config: QuartzConfig = {
 		enableSPA: true,
 		enablePopovers: true,
 		analytics: {
-			provider: "plausible",
+			provider: "custom",
 			host: "https://analytics.thexiao77.com",
+			scriptPath: "/api/script.js",
+			siteId: "f48eefb9235d",
 		},
 		locale: "en-US",
 		baseUrl: "brain.adrianvillanueva.com",
