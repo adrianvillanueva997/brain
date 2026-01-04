@@ -35,7 +35,7 @@ Personal goals, growth, and life philosophies.
 
 **[[03-projects/index|🎯 Projects]]**
 
-Active projects like [[03-projects/zenthos/project-overview|Zenthos]] and other initiatives I'm building.
+Active projects like [[03-projects/metalops/index|Metalops]] and other initiatives I'm building.
 
 ---
 

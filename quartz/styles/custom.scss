@@ -199,6 +199,12 @@ pre:hover::before {
 .table-container {
   // Better shadow for scrollable tables
   position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--light);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--lightgray);
+  transition: all 0.3s ease;
 
   &::after {
     content: '';
@@ -218,17 +224,60 @@ pre:hover::before {
       opacity: 1;
     }
   }
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
 }
 
 table {
   min-width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: linear-gradient(135deg, var(--highlight), rgba(212, 117, 79, 0.08));
+    font-weight: 700;
+    color: var(--dark);
+    font-family: 'Patrick Hand', cursive;
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--secondary);
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(212, 117, 79, 0.15);
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: all 0.2s ease;
+      border-bottom: 1px solid var(--lightgray);
+
+      &:nth-child(even) {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      &:hover {
+        background: var(--highlight);
+        box-shadow: inset 0 0 10px rgba(212, 117, 79, 0.1);
+      }
+
+      td {
+        padding: 0.75rem 1rem;
+      }
+    }
+  }
 
   @media (max-width: 800px) {
     font-size: 0.9rem;
 
     th,
     td {
-      padding: 0.3rem 0.5rem;
+      padding: 0.5rem 0.3rem;
       min-width: 60px;
     }
   }
@@ -585,18 +634,22 @@ img {
 
   button {
     font-size: 0.95rem;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    text-align: left;
   }
 
   .folder-outer {
     transition: all 0.2s ease;
-    padding: 0.25rem 0.5rem;
-    margin: 0.125rem 0;
+    padding: 0.2rem 0;
+    margin: 0.05rem 0;
     border-radius: var(--radius);
+    word-break: break-word;
+    overflow-wrap: break-word;
 
     &:hover {
-      background: var(--highlight);
-      box-shadow: var(--shadow-sm);
+      background: transparent;
+      box-shadow: none;
     }
   }
 
@@ -606,61 +659,138 @@ img {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
+    gap: 0.35rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
 
     &::before {
       content: "▶";
-      opacity: 0.5;
-      margin-right: 0.5rem;
-      font-size: 0.7rem;
+      opacity: 0.4;
+      flex-shrink: 0;
+      font-size: 0.6rem;
       color: var(--secondary);
       transition: all 0.2s ease;
       display: inline-block;
+      width: 0.5rem;
+      text-align: center;
+    }
+
+    &:hover {
+      background: var(--highlight);
+      padding-left: 0.5rem;
+
+      &::before {
+        opacity: 0.7;
+      }
     }
   }
 
   .folder-outer.open .folder-title::before {
     content: "▼";
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .folder-outer:hover .folder-title::before {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   .file-outer {
     transition: all 0.2s ease;
-    padding: 0.2rem 0.5rem;
-    margin: 0.125rem 0;
-    border-radius: var(--radius-sm);
-
-    &:hover {
-      background: var(--highlight);
-      transform: translateX(3px);
-    }
+    padding: 0.05rem 0;
+    margin: 0.03rem 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
 
     a {
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      gap: 0.35rem;
       font-size: 0.875rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      padding: 0.2rem 0.4rem;
+      margin: 0;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
 
       &::before {
         content: "•";
-        opacity: 0.4;
-        margin-right: 0.5rem;
+        opacity: 0.3;
         color: var(--secondary);
-        font-size: 1rem;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        transition: opacity 0.2s ease;
       }
-    }
 
-    &:hover a::before {
-      opacity: 0.7;
+      &::after {
+        display: none;
+      }
+
+      &:hover {
+        background: var(--highlight);
+        color: var(--secondary);
+        font-weight: 600;
+        padding-left: 0.5rem;
+
+        &::before {
+          opacity: 0.8;
+        }
+      }
     }
   }
 
-  // Nested folder indentation
+  .folder-list {
+    overflow-x: hidden;
+
+    @media (max-width: 800px) {
+      font-size: 0.85rem;
+
+      .file-outer a {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      padding-left: 0;
+      font-size: 0.8rem;
+
+      .file-outer a {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  // Smarter nested folder indentation - progressive scaling
   .folder-outer .folder-outer,
   .folder-outer .file-outer {
-    margin-left: 0.75rem;
+    margin-left: 0.5rem;
+
+    .folder-title {
+      font-size: 0.85rem;
+    }
+
+    a {
+      font-size: 0.8rem;
+    }
+  }
+
+  // Third level and beyond - reduce further
+  .folder-outer .folder-outer .folder-outer,
+  .folder-outer .folder-outer .file-outer,
+  .folder-outer .folder-outer .folder-outer .folder-outer,
+  .folder-outer .folder-outer .folder-outer .file-outer {
+    margin-left: 0.25rem;
+
+    .folder-title {
+      font-size: 0.8rem;
+    }
+
+    a {
+      font-size: 0.75rem;
+    }
   }
 }
 
@@ -1070,31 +1200,79 @@ button {
 // ============================================
 
 .toc {
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Patrick Hand', cursive;
+
+  >h3 {
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    color: var(--dark);
+
+    &::before {
+      content: '📍 ';
+      margin-right: 0.5rem;
+    }
+  }
+
   ul {
-    border-left: 2px solid var(--lightgray);
+    border-left: 3px solid var(--secondary);
     padding-left: 1rem;
+    margin: 0;
+    list-style: none;
 
     li {
-      margin: 0.5rem 0;
+      margin: 0.75rem 0;
+      position: relative;
 
       a {
         display: block;
-        padding: 0.25rem 0.5rem;
-        border-radius: var(--radius-sm);
-        transition: all 0.2s ease;
+        padding: 0.4rem 0.75rem;
+        border-radius: var(--radius-md);
+        transition: all 0.3s ease;
+        color: var(--dark);
+        position: relative;
+        font-size: 0.95rem;
+        background: transparent;
+
+        &::after {
+          display: none;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -13px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 8px;
+          height: 8px;
+          background: var(--secondary);
+          border-radius: 50%;
+          border: 2px solid var(--light);
+          transition: all 0.2s ease;
+        }
 
         &:hover {
           background: var(--highlight);
-          transform: translateX(3px);
+          transform: translateX(4px);
           color: var(--secondary);
+          font-weight: 600;
+
+          &::before {
+            transform: translateY(-50%) scale(1.3);
+          }
         }
 
         &.active {
           background: var(--highlight);
           color: var(--secondary);
-          font-weight: 600;
-          border-left: 3px solid var(--secondary);
-          padding-left: 0.75rem;
+          font-weight: 700;
+          box-shadow: inset 0 0 10px rgba(212, 117, 79, 0.15);
         }
       }
     }
@@ -1280,25 +1458,37 @@ a {
 
 // Warm blockquotes with bookmark ribbon feel
 blockquote {
-  background: var(--cozy-warmth);
-  border-left-width: 4px;
-  border-radius: var(--radius);
-  padding: 1rem 1rem 1rem 1.5rem;
-  margin: 1.5rem 0;
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg,
+      var(--highlight) 0%,
+      rgba(212, 117, 79, 0.08) 100%);
+  border-left: 5px solid var(--secondary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
   position: relative;
+  font-style: italic;
+  font-family: 'Lora', serif;
+  font-size: 1.05em;
+  line-height: 1.6;
+  transition: all 0.3s ease;
 
   // Decorative quote mark
   &::before {
     content: '"';
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 0;
     position: absolute;
-    left: 0.5rem;
-    top: 1.5rem;
+    left: 0.25rem;
+    top: 0.5rem;
     color: var(--secondary);
-    opacity: 0.15;
+    opacity: 0.12;
     font-family: Georgia, serif;
+  }
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateX(4px);
   }
 
   // Ribbon corner fold

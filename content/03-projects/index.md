@@ -4,7 +4,4 @@ Overview of all active, planned, and completed projects.
 
 ## Active Projects
 
- 
-## Personal Projects
-
-1. [metalops](metalops/index.md) 
+- [[03-projects/metalops/index|Metalops]] - A modern deployment and infrastructure automation project
