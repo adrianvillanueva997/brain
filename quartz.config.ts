@@ -13,10 +13,9 @@ const config: QuartzConfig = {
 		enableSPA: true,
 		enablePopovers: true,
 		analytics: {
-			provider: "custom",
+			provider: "rybbit",
 			host: "https://analytics.thexiao77.com",
-			scriptPath: "/api/script.js",
-			siteId: "f48eefb9235d",
+			siteId: "",
 		},
 		locale: "en-US",
 		baseUrl: "brain.adrianvillanueva.com",
@@ -27,31 +26,31 @@ const config: QuartzConfig = {
 			cdnCaching: true,
 			typography: {
 				header: "Schibsted Grotesk",
-				body: "Lora",
+				body: "Source Sans Pro",
 				code: "IBM Plex Mono",
 			},
 			colors: {
 				lightMode: {
-					light: "#fef9f3", // Warm cream background
-					lightgray: "#f3ebe1", // Soft beige
-					gray: "#c9b8a3", // Warm gray
-					darkgray: "#5a4a3a", // Cozy brown
-					dark: "#3d2f21", // Deep warm brown
-					secondary: "#d4754f", // Terracotta/warm orange
-					tertiary: "#9c826f", // Dusty rose/taupe
-					highlight: "rgba(212, 117, 79, 0.12)", // Warm highlight
-					textHighlight: "#ffd89688", // Warm yellow highlight
+					light: "#faf8f8",
+					lightgray: "#e5e5e5",
+					gray: "#b8b8b8",
+					darkgray: "#4e4e4e",
+					dark: "#2b2b2b",
+					secondary: "#284b63",
+					tertiary: "#84a59d",
+					highlight: "rgba(143, 159, 169, 0.15)",
+					textHighlight: "#fff23688",
 				},
 				darkMode: {
-					light: "#1a1612", // Warm dark background
-					lightgray: "#2d2520", // Soft dark brown
-					gray: "#6b5d52", // Medium warm gray
-					darkgray: "#c9b8a3", // Light warm gray
-					dark: "#f3ebe1", // Cream text
-					secondary: "#e8956f", // Lighter terracotta
-					tertiary: "#b89a84", // Warm taupe
-					highlight: "rgba(232, 149, 111, 0.15)", // Warm dark highlight
-					textHighlight: "#ffb86688", // Warm amber highlight
+					light: "#161618",
+					lightgray: "#393639",
+					gray: "#646464",
+					darkgray: "#d4d4d4",
+					dark: "#ebebec",
+					secondary: "#7b97aa",
+					tertiary: "#84a59d",
+					highlight: "rgba(143, 159, 169, 0.15)",
+					textHighlight: "#b3aa0288",
 				},
 			},
 		},

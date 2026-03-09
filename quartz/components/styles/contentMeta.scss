@@ -1,30 +1,13 @@
 .content-meta {
   margin-top: 0;
   color: var(--darkgray);
-  font-family: 'Patrick Hand', cursive;
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  align-items: center;
-  font-size: 0.95rem;
-
-  span {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-
-    &::before {
-      content: '📖';
-      filter: grayscale(0.3);
-    }
-  }
 
   &[show-comma="true"] {
-    >*:not(:last-child) {
-      margin-right: 0;
+    > *:not(:last-child) {
+      margin-right: 8px;
 
       &::after {
-        content: "";
+        content: ",";
       }
     }
   }

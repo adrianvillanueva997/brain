@@ -1,2 +1,0 @@
-sync:
-		npx quartz sync
