@@ -6,15 +6,23 @@ This is my working memory: things I am learning, building, and trying to underst
 
 ## Start here
 
-- [[inbox|Inbox]] — uncategorized notes waiting to be processed
-- [[japanese/_index|Japanese]] — current study area
-- [[emulators/chip8|CHIP-8]] — emulator notes and references
+1. [[inbox|Inbox]]
+2. [[knowledge|Knowledge]]
+3. [[projects|Projects]]
+4. [[learning|Learning]]
 
-## Active areas
+## Learning
 
-- [[japanese/_index|Japanese]] — grammar, vocabulary, kanji, and study resources
-- [[emulators/chip8|CHIP-8]] — emulator implementation notes and research
-- [[inbox|Inbox]] — fast capture before deciding where a note belongs
+1. [[japanese/_index|Japanese]]
+2. [[learning/chip8|CHIP 8 emulator in Rust]]
+
+## Knowledge
+
+1. [[emulators/chip8|CHIP 8 notes and references]]
+
+## Projects
+
+1. [[projects|Project notes and current work]]
 
 ## Capture rule
 
@@ -22,10 +30,10 @@ When a note does not have an obvious home, put it in the [[inbox]]. A useful not
 
 ## Note types
 
-- **Concept** — something I understand and want to explain later
-- **Resource** — an external reference with a short summary and reason to keep it
-- **Project** — a concrete outcome with current status and next actions
-- **Study** — notes, questions, and vocabulary from a learning session
+1. **Concept** — something I understand and want to explain later
+2. **Resource** — an external reference with a short summary and reason to keep it
+3. **Project** — a concrete outcome with current status and next actions
+4. **Study** — notes, questions, and vocabulary from a learning session
 
 ## Recently updated
 

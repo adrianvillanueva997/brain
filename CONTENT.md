@@ -4,11 +4,12 @@ Put published notes under `content/`. Use the folder that best describes the not
 
 ## Where things go
 
-- `content/inbox/`: fast capture and notes that need sorting
-- Subject folders such as `content/japanese/`: durable knowledge grouped by area
-- `content/projects/`: notes about a concrete thing being built
-- `content/resources/`: useful external references and summaries
-- `templates/`: Obsidian templates; Quartz does not publish this folder
+1. `content/inbox/` is for fast capture and notes that need sorting.
+2. `content/knowledge/` is for durable explanations and references.
+3. `content/projects/` is for concrete outcomes and current work.
+4. `content/learning/` is for guided study areas and progress.
+5. Subject folders such as `content/japanese/` remain valid until their notes are intentionally reorganized.
+6. `templates/` contains Obsidian templates and Quartz does not publish it.
 
 Private journals and study logs belong under `private/`. That directory is excluded from the site and Git, so use a separate backup if those notes matter.
 
